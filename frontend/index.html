@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Finora — gestionale personale per entrate, spese, risparmi e obiettivi.">
+    <title>Finora — Panoramica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar__brand">
+                <div class="brand__icon">€</div><span class="brand__name">Finora</span>
+            </div>
+            <nav class="sidebar__nav"><a href="#" class="nav-item nav-item--active"><i
+                        data-lucide="layout-dashboard"></i><span>Panoramica</span></a><a href="#" class="nav-item"><i
+                        data-lucide="wallet"></i><span>Finanze</span></a><a href="#" class="nav-item"><i
+                        data-lucide="chart-pie"></i><span>Analisi</span></a><a href="#" class="nav-item"><i
+                        data-lucide="target"></i><span>Obiettivi</span></a><a href="#" class="nav-item"><i
+                        data-lucide="piggy-bank"></i><span>Risparmi</span></a><a href="#" class="nav-item"><i
+                        data-lucide="heart"></i><span>Wishlist</span></a><a href="#" class="nav-item"><i
+                        data-lucide="repeat"></i><span>Ricorrenti</span></a></nav>
+            <div class="sidebar__bottom"><a href="#" class="nav-item"><i
+                        data-lucide="settings"></i><span>Impostazioni</span></a></div>
+        </aside>
+        <main class="main">
+            <div class="dashboard">
+                <header class="page-header">
+                    <div class="page-header__text"><span class="eyebrow">Panoramica</span>
+                        <h1>Buon pomeriggio, Luca <span>👋</span></h1>
+                    </div>
+                    <div class="page-header__actions"><button class="icon-button" aria-label="Notifiche"><i
+                                data-lucide="bell"></i><span class="notification-dot"></span></button><button
+                            class="profile"><span class="profile__avatar">L</span><span
+                                class="profile__info"><strong>Luca</strong><small>Account personale</small></span><i
+                                data-lucide="chevron-down"></i></button></div>
+                </header>
+                <section class="section-intro">
+                    <div>
+                        <h2>La tua situazione</h2>
+                        <p>Ecco come stanno andando le tue finanze.</p>
+                    </div><button class="primary-button"><i data-lucide="plus"></i><span>Nuova
+                            transazione</span></button>
+                </section>
+                <section class="summary-grid">
+                    <article class="financial-card financial-card--main">
+                        <div class="financial-card__top"><span>Disponibile</span><span
+                                class="financial-card__icon">€</span></div><strong class="financial-card__value">€
+                            2.430,50</strong><span class="financial-card__description positive"><i
+                                data-lucide="arrow-up-right"></i>€320 rispetto al mese scorso</span>
+                    </article>
+                    <article class="financial-card">
+                        <div class="financial-card__top"><span>Entrate</span><span
+                                class="metric-icon metric-icon--blue"><i data-lucide="arrow-down-left"></i></span></div>
+                        <strong class="financial-card__value">€ 1.850,00</strong><span
+                            class="financial-card__description">Questo mese</span>
+                    </article>
+                    <article class="financial-card">
+                        <div class="financial-card__top"><span>Uscite</span><span
+                                class="metric-icon metric-icon--red"><i data-lucide="arrow-up-right"></i></span></div>
+                        <strong class="financial-card__value">€ 920,50</strong><span
+                            class="financial-card__description">Questo mese</span>
+                    </article>
+                    <article class="financial-card">
+                        <div class="financial-card__top"><span>Risparmio</span><span
+                                class="metric-icon metric-icon--mint"><i data-lucide="piggy-bank"></i></span></div>
+                        <strong class="financial-card__value">€ 930,00</strong><span
+                            class="financial-card__description">50,3% delle entrate</span>
+                    </article>
+                </section>
+                <section class="analytics-grid">
+                    <article class="card chart-card">
+                        <div class="card__header">
+                            <div>
+                                <h3>Andamento</h3>
+                                <p>Entrate e uscite</p>
+                            </div><select class="select" id="period-select">
+                                <option value="6">Ultimi 6 mesi</option>
+                                <option value="12">Ultimi 12 mesi</option>
+                            </select>
+                        </div>
+                        <div class="chart-legend"><span>● Entrate</span><span>● Uscite</span></div>
+                        <div class="chart-container"><canvas id="overview-chart"></canvas></div>
+                    </article>
+                    <article class="card expenses-card">
+                        <div class="card__header">
+                            <div>
+                                <h3>Spese</h3>
+                                <p>Per categoria</p>
+                            </div><a href="#" class="text-link">Vedi tutto</a>
+                        </div>
+                        <div class="donut-wrapper">
+                            <div class="donut-chart"><canvas id="expenses-chart"></canvas>
+                                <div class="donut-center"><strong>€635</strong><span>totale</span></div>
+                            </div>
+                        </div>
+                        <div class="category-list" id="category-list"></div>
+                    </article>
+                </section>
+                <section class="lower-grid">
+                    <article class="card">
+                        <div class="card__header">
+                            <div>
+                                <h3>Ultime transazioni</h3>
+                                <p>Le attività più recenti</p>
+                            </div><a href="#" class="text-link">Vedi tutto</a>
+                        </div>
+                        <div class="transactions-list" id="transactions-list"></div>
+                    </article>
+                    <article class="card">
+                        <div class="card__header">
+                            <div>
+                                <h3>Obiettivi</h3>
+                                <p>I tuoi progressi</p>
+                            </div><a href="#" class="text-link">Vedi tutto</a>
+                        </div>
+                        <div class="goals-list">
+                            <div class="goal">
+                                <div class="goal__top"><span>🚗 Macchina</span><strong>72%</strong></div>
+                                <div class="progress">
+                                    <div class="progress__bar" style="width:72%"></div>
+                                </div>
+                                <div class="goal__bottom"><span>€3.600</span><span>€5.000</span></div>
+                            </div>
+                            <div class="goal">
+                                <div class="goal__top"><span>✈️ Vacanza</span><strong>38%</strong></div>
+                                <div class="progress">
+                                    <div class="progress__bar progress__bar--blue" style="width:38%"></div>
+                                </div>
+                                <div class="goal__bottom"><span>€760</span><span>€2.000</span></div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </main>
+        <nav class="mobile-nav"><a class="mobile-nav__item mobile-nav__item--active" href="#"><i
+                    data-lucide="layout-dashboard"></i><span>Home</span></a><a class="mobile-nav__item" href="#"><i
+                    data-lucide="wallet"></i><span>Finanze</span></a><button class="mobile-nav__add"><i
+                    data-lucide="plus"></i></button><a class="mobile-nav__item" href="#"><i
+                    data-lucide="chart-pie"></i><span>Analisi</span></a><a class="mobile-nav__item" href="#"><i
+                    data-lucide="more-horizontal"></i><span>Altro</span></a></nav>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
