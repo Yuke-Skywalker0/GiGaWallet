@@ -47,8 +47,11 @@
                     <div>
                         <h2>La tua situazione</h2>
                         <p>Ecco come stanno andando le tue finanze.</p>
-                    </div><button class="primary-button"><i data-lucide="plus"></i><span>Nuova
-                            transazione</span></button>
+                    </div>
+                    <button class="primary-button" id="new-transaction-btn">
+                        <i data-lucide="plus"></i>
+                        <span>Nuova transazione</span>
+                    </button>
                 </section>
                 <section class="summary-grid">
                     <article class="financial-card financial-card--main">
@@ -149,6 +152,74 @@
                     data-lucide="chart-pie"></i><span>Analisi</span></a><a class="mobile-nav__item" href="#"><i
                     data-lucide="more-horizontal"></i><span>Altro</span></a></nav>
     </div>
+
+    <div class="modal" id="transaction-modal">
+
+        <div class="modal-content">
+            <h2>Nuova transazione</h2>
+
+            <form id="transaction-form">
+                <label for="transaction-type">Tipo</label>
+
+                <select id="transaction-type" name="type">
+                    <option value="expense">Uscita</option>
+                    <option value="income">Entrata</option>
+                </select>
+
+                <label for="transaction-amount">Importo</label>
+
+                <input
+                    type="number"
+                    id="transaction-amount"
+                    name="amount"
+                    step="0.01"
+                    min="0"
+                    placeholder="0,00"
+                >
+                <label for="transaction-category">Categoria</label>
+
+                <select id="transaction-category" name="category">
+                    <option value="food">Cibo</option>
+                    <option value="transport">Trasporti</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="bills">Bollette</option>
+                    <option value="other">Altro</option>
+                </select>
+
+                <label for="transaction-description">Descrizione</label>
+
+                <input
+                    type="text"
+                    id="transaction-description"
+                    name="description"
+                    placeholder="Es. Spesa al supermercato"
+                >
+
+                <label for="transaction-date">Data</label>
+
+                <input
+                    type="date"
+                    id="transaction-date"
+                    name="date"
+                >
+
+                <div class="modal-actions">
+
+                    <button type="button" id="cancel-transaction-btn">
+                        Annulla
+                    </button>
+
+                    <button type="submit" id="save-transaction-btn">
+                        Aggiungi transazione
+                    </button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
     <script src="js/dashboard.js"></script>
 </body>
 

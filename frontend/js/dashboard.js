@@ -19,7 +19,9 @@ const dashboardData = {
 };
 
 function formatCurrency(value) {
-    return new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" }).format(value)
+    return new Intl.NumberFormat(
+        "it-IT", 
+        { style: "currency", currency: "EUR" }).format(value)
 }
 
 function renderCategories() {
@@ -77,7 +79,27 @@ function initializeDashboard() {
     renderTransactions();
     createOverviewChart();
     createExpensesChart();
-    if (window.lucide) lucide.createIcons()
+
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+
+    const newTransactionButton =
+        document.querySelector("#new-transaction-btn");
+
+    const transactionModal =
+        document.querySelector("#transaction-modal");
+
+    const cancelTransactionButton =
+        document.querySelector("#cancel-transaction-btn");
+
+    newTransactionButton.addEventListener("click", function () {
+        transactionModal.style.display = "flex";
+    });
+
+    cancelTransactionButton.addEventListener("click", function () {
+        transactionModal.style.display = "none";
+    });
 }
 
 document.addEventListener("DOMContentLoaded", initializeDashboard);

@@ -776,3 +776,83 @@ a {
         min-width: 195px
     }
 }
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(25, 53, 66, 0.45);
+    z-index: 1000;
+}
+
+.modal-content {
+    width: min(500px, calc(100% - 32px));
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    padding: 28px;
+    background: #ffffff;
+    border-radius: 21px;
+    box-shadow: 0 20px 60px rgba(25, 53, 66, 0.18);
+}
+
+#transaction-form input,
+#transaction-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e7eef0;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #193542;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#transaction-form input:focus,
+#transaction-form select:focus {
+    border-color: #43aeb0;
+    box-shadow: 0 0 0 3px rgba(67, 174, 176, 0.12);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.modal-actions button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#cancel-transaction-btn {
+    background: #f1f5f6;
+    color: #617782;
+}
+
+#cancel-transaction-btn:hover {
+    background: #e7eef0;
+}
+
+#save-transaction-btn {
+    background: #43aeb0;
+    color: #ffffff;
+}
+
+#save-transaction-btn:hover {
+    background: #318f94;
+}
+
+.modal-actions button:active {
+    transform: scale(0.98);
+}
