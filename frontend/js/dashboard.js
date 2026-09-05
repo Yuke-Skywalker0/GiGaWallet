@@ -93,12 +93,68 @@ function initializeDashboard() {
     const cancelTransactionButton =
         document.querySelector("#cancel-transaction-btn");
 
+    const transactionForm =
+        document.querySelector("#transaction-form");
+
     newTransactionButton.addEventListener("click", function () {
         transactionModal.style.display = "flex";
     });
 
     cancelTransactionButton.addEventListener("click", function () {
         transactionModal.style.display = "none";
+    });
+
+    transactionModal.addEventListener("click", function (event) {
+        if (event.target === transactionModal) {
+            transactionModal.style.display = "none";
+        }
+    });
+
+   transactionForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const type =
+            document.querySelector("#transaction-type").value;
+
+        const amount =
+            Number(document.querySelector("#transaction-amount").value);
+
+        const category =
+            document.querySelector("#transaction-category").value;
+
+        const description =
+            document.querySelector("#transaction-description").value;
+
+        const date =
+            document.querySelector("#transaction-date").value;
+
+
+        if (amount <= 0) {
+            alert("Inserisci un importo maggiore di zero.");
+            return;
+        }
+
+        if (description.trim() === "") {
+            alert("Inserisci una descrizione.");
+            return;
+        }
+
+        if (date === "") {
+            alert("Seleziona una data.");
+            return;
+        }
+
+
+        const transaction = {
+            type: type,
+            amount: amount,
+            category: category,
+            description: description,
+            date: date
+        };
+
+        console.log(transaction);
     });
 }
 

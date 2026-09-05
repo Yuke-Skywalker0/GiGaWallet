@@ -161,7 +161,7 @@
             <form id="transaction-form">
                 <label for="transaction-type">Tipo</label>
 
-                <select id="transaction-type" name="type">
+                <select id="transaction-type" name="type" required>
                     <option value="expense">Uscita</option>
                     <option value="income">Entrata</option>
                 </select>
@@ -175,10 +175,11 @@
                     step="0.01"
                     min="0"
                     placeholder="0,00"
+                    required
                 >
                 <label for="transaction-category">Categoria</label>
 
-                <select id="transaction-category" name="category">
+                <select id="transaction-category" name="category" required>
                     <option value="food">Cibo</option>
                     <option value="transport">Trasporti</option>
                     <option value="gaming">Gaming</option>
@@ -196,12 +197,13 @@
                     placeholder="Es. Spesa al supermercato"
                 >
 
-                <label for="transaction-date">Data</label>
+                <label for="transaction-date" >Data</label>
 
                 <input
                     type="date"
                     id="transaction-date"
                     name="date"
+                    required
                 >
 
                 <div class="modal-actions">
