@@ -1,228 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="description" content="Finora — gestionale personale per entrate, spese, risparmi e obiettivi.">
-    <title>Finora — Panoramica</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#43aeb0">
+  <meta name="description" content="Finora: gestisci entrate, uscite, risparmi e obiettivi in modo semplice e privato.">
+  <title>Finora — Le tue finanze, più chiare</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-    <div class="app">
-        <aside class="sidebar">
-            <div class="sidebar__brand">
-                <div class="brand__icon">€</div><span class="brand__name">Finora</span>
-            </div>
-            <nav class="sidebar__nav"><a href="#" class="nav-item nav-item--active"><i
-                        data-lucide="layout-dashboard"></i><span>Panoramica</span></a><a href="#" class="nav-item"><i
-                        data-lucide="wallet"></i><span>Finanze</span></a><a href="#" class="nav-item"><i
-                        data-lucide="chart-pie"></i><span>Analisi</span></a><a href="#" class="nav-item"><i
-                        data-lucide="target"></i><span>Obiettivi</span></a><a href="#" class="nav-item"><i
-                        data-lucide="piggy-bank"></i><span>Risparmi</span></a><a href="#" class="nav-item"><i
-                        data-lucide="heart"></i><span>Wishlist</span></a><a href="#" class="nav-item"><i
-                        data-lucide="repeat"></i><span>Ricorrenti</span></a></nav>
-            <div class="sidebar__bottom"><a href="#" class="nav-item"><i
-                        data-lucide="settings"></i><span>Impostazioni</span></a></div>
-        </aside>
-        <main class="main">
-            <div class="dashboard">
-                <header class="page-header">
-                    <div class="page-header__text"><span class="eyebrow">Panoramica</span>
-                        <h1>Buon pomeriggio, Luca <span>👋</span></h1>
-                    </div>
-                    <div class="page-header__actions"><button class="icon-button" aria-label="Notifiche"><i
-                                data-lucide="bell"></i><span class="notification-dot"></span></button><button
-                            class="profile"><span class="profile__avatar">L</span><span
-                                class="profile__info"><strong>Luca</strong><small>Account personale</small></span><i
-                                data-lucide="chevron-down"></i></button></div>
-                </header>
-                <section class="section-intro">
-                    <div>
-                        <h2>La tua situazione</h2>
-                        <p>Ecco come stanno andando le tue finanze.</p>
-                    </div>
-                    <button class="primary-button" id="new-transaction-btn">
-                        <i data-lucide="plus"></i>
-                        <span>Nuova transazione</span>
-                    </button>
-                </section>
-                <section class="summary-grid">
-                    <article class="financial-card financial-card--main">
-                        <div class="financial-card__top"><span>Disponibile</span><span
-                                class="financial-card__icon">€</span></div><strong class="financial-card__value">€
-                            2.430,50</strong><span class="financial-card__description positive"><i
-                                data-lucide="arrow-up-right"></i>€320 rispetto al mese scorso</span>
-                    </article>
-                    <article class="financial-card">
-                        <div class="financial-card__top"><span>Entrate</span><span
-                                class="metric-icon metric-icon--blue"><i data-lucide="arrow-down-left"></i></span></div>
-                        <strong class="financial-card__value">€ 1.850,00</strong><span
-                            class="financial-card__description">Questo mese</span>
-                    </article>
-                    <article class="financial-card">
-                        <div class="financial-card__top"><span>Uscite</span><span
-                                class="metric-icon metric-icon--red"><i data-lucide="arrow-up-right"></i></span></div>
-                        <strong class="financial-card__value">€ 920,50</strong><span
-                            class="financial-card__description">Questo mese</span>
-                    </article>
-                    <article class="financial-card">
-                        <div class="financial-card__top"><span>Risparmio</span><span
-                                class="metric-icon metric-icon--mint"><i data-lucide="piggy-bank"></i></span></div>
-                        <strong class="financial-card__value">€ 930,00</strong><span
-                            class="financial-card__description">50,3% delle entrate</span>
-                    </article>
-                </section>
-                <section class="analytics-grid">
-                    <article class="card chart-card">
-                        <div class="card__header">
-                            <div>
-                                <h3>Andamento</h3>
-                                <p>Entrate e uscite</p>
-                            </div><select class="select" id="period-select">
-                                <option value="6">Ultimi 6 mesi</option>
-                                <option value="12">Ultimi 12 mesi</option>
-                            </select>
-                        </div>
-                        <div class="chart-legend"><span>● Entrate</span><span>● Uscite</span></div>
-                        <div class="chart-container"><canvas id="overview-chart"></canvas></div>
-                    </article>
-                    <article class="card expenses-card">
-                        <div class="card__header">
-                            <div>
-                                <h3>Spese</h3>
-                                <p>Per categoria</p>
-                            </div><a href="#" class="text-link">Vedi tutto</a>
-                        </div>
-                        <div class="donut-wrapper">
-                            <div class="donut-chart"><canvas id="expenses-chart"></canvas>
-                                <div class="donut-center"><strong>€635</strong><span>totale</span></div>
-                            </div>
-                        </div>
-                        <div class="category-list" id="category-list"></div>
-                    </article>
-                </section>
-                <section class="lower-grid">
-                    <article class="card">
-                        <div class="card__header">
-                            <div>
-                                <h3>Ultime transazioni</h3>
-                                <p>Le attività più recenti</p>
-                            </div><a href="#" class="text-link">Vedi tutto</a>
-                        </div>
-                        <div class="transactions-list" id="transactions-list"></div>
-                    </article>
-                    <article class="card">
-                        <div class="card__header">
-                            <div>
-                                <h3>Obiettivi</h3>
-                                <p>I tuoi progressi</p>
-                            </div><a href="#" class="text-link">Vedi tutto</a>
-                        </div>
-                        <div class="goals-list">
-                            <div class="goal">
-                                <div class="goal__top"><span>🚗 Macchina</span><strong>72%</strong></div>
-                                <div class="progress">
-                                    <div class="progress__bar" style="width:72%"></div>
-                                </div>
-                                <div class="goal__bottom"><span>€3.600</span><span>€5.000</span></div>
-                            </div>
-                            <div class="goal">
-                                <div class="goal__top"><span>✈️ Vacanza</span><strong>38%</strong></div>
-                                <div class="progress">
-                                    <div class="progress__bar progress__bar--blue" style="width:38%"></div>
-                                </div>
-                                <div class="goal__bottom"><span>€760</span><span>€2.000</span></div>
-                            </div>
-                        </div>
-                    </article>
-                </section>
-            </div>
-        </main>
-        <nav class="mobile-nav"><a class="mobile-nav__item mobile-nav__item--active" href="#"><i
-                    data-lucide="layout-dashboard"></i><span>Home</span></a><a class="mobile-nav__item" href="#"><i
-                    data-lucide="wallet"></i><span>Finanze</span></a><button class="mobile-nav__add"><i
-                    data-lucide="plus"></i></button><a class="mobile-nav__item" href="#"><i
-                    data-lucide="chart-pie"></i><span>Analisi</span></a><a class="mobile-nav__item" href="#"><i
-                    data-lucide="more-horizontal"></i><span>Altro</span></a></nav>
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <section id="auth-view" class="auth-shell">
+    <div class="auth-card">
+      <div class="brand"><span class="brand-mark">F</span><span>Finora</span></div>
+      <h1>Le tue finanze.<br>Finalmente chiare.</h1>
+      <p>Entrate, uscite, saldo e risparmio in un'unica dashboard privata.</p>
+      <div id="google-button"></div>
+      <p class="micro">Accedendo accetti l'uso dei dati esclusivamente per il funzionamento del tuo account.</p>
     </div>
+  </section>
 
-    <div class="modal" id="transaction-modal">
+  <div id="app-view" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">F</span><span>Finora</span></div>
+      <nav>
+        <button class="nav-item active" data-view="dashboard">Panoramica</button>
+        <button class="nav-item" data-view="transactions">Transazioni</button>
+        <button class="nav-item" data-view="goals">Obiettivi</button>
+      </nav>
+      <button id="logout-btn" class="nav-item logout">Esci</button>
+    </aside>
 
-        <div class="modal-content">
-            <h2>Nuova transazione</h2>
-
-            <form id="transaction-form">
-                <label for="transaction-type">Tipo</label>
-
-                <select id="transaction-type" name="type" required>
-                    <option value="expense">Uscita</option>
-                    <option value="income">Entrata</option>
-                </select>
-
-                <label for="transaction-amount">Importo</label>
-
-                <input
-                    type="number"
-                    id="transaction-amount"
-                    name="amount"
-                    step="0.01"
-                    min="0"
-                    placeholder="0,00"
-                    required
-                >
-                <label for="transaction-category">Categoria</label>
-
-                <select id="transaction-category" name="category" required>
-                    <option value="food">Cibo</option>
-                    <option value="transport">Trasporti</option>
-                    <option value="gaming">Gaming</option>
-                    <option value="shopping">Shopping</option>
-                    <option value="bills">Bollette</option>
-                    <option value="other">Altro</option>
-                </select>
-
-                <label for="transaction-description">Descrizione</label>
-
-                <input
-                    type="text"
-                    id="transaction-description"
-                    name="description"
-                    placeholder="Es. Spesa al supermercato"
-                >
-
-                <label for="transaction-date" >Data</label>
-
-                <input
-                    type="date"
-                    id="transaction-date"
-                    name="date"
-                    required
-                >
-
-                <div class="modal-actions">
-
-                    <button type="button" id="cancel-transaction-btn">
-                        Annulla
-                    </button>
-
-                    <button type="submit" id="save-transaction-btn">
-                        Aggiungi transazione
-                    </button>
-
-                </div>
-            </form>
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">PANORAMICA</span>
+          <h1 id="welcome">Ciao 👋</h1>
+          <p>Tieni sotto controllo le tue finanze.</p>
         </div>
+        <button id="new-transaction-btn" class="primary">+ Nuova transazione</button>
+      </header>
 
+      <section class="summary-grid">
+        <article class="metric featured"><span>Disponibile</span><strong id="available-balance">€ 0,00</strong><small>Saldo attuale</small></article>
+        <article class="metric"><span>Entrate</span><strong id="total-income">€ 0,00</strong><small>Questo mese</small></article>
+        <article class="metric"><span>Uscite</span><strong id="total-expenses">€ 0,00</strong><small>Questo mese</small></article>
+        <article class="metric"><span>Risparmio</span><strong id="total-savings">€ 0,00</strong><small id="savings-percentage">0,0% delle entrate</small></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel">
+          <div class="panel-head"><div><h2>Andamento</h2><p>Ultimi 6 mesi</p></div></div>
+          <div class="chart-box"><canvas id="overview-chart"></canvas></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><h2>Spese per categoria</h2><p>Mese corrente</p></div></div>
+          <div class="chart-box small"><canvas id="category-chart"></canvas></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><div><h2>Transazioni recenti</h2><p>Le ultime operazioni</p></div></div>
+        <div id="transactions-list" class="transactions"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="transaction-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head"><div><span class="eyebrow">FINORA</span><h2>Nuova transazione</h2></div><button id="close-modal" class="icon-btn" aria-label="Chiudi">×</button></div>
+      <form id="transaction-form">
+        <label>Tipo<select id="transaction-type" required><option value="expense">Uscita</option><option value="income">Entrata</option></select></label>
+        <label>Importo<input id="transaction-amount" type="number" min="0.01" step="0.01" placeholder="0,00" required></label>
+        <label>Categoria<select id="transaction-category" required><option value="Cibo">Cibo</option><option value="Trasporti">Trasporti</option><option value="Casa">Casa</option><option value="Bollette">Bollette</option><option value="Shopping">Shopping</option><option value="Gaming">Gaming</option><option value="Lavoro">Lavoro</option><option value="Altro">Altro</option></select></label>
+        <label>Descrizione<input id="transaction-description" maxlength="120" placeholder="Es. Spesa supermercato" required></label>
+        <label>Data<input id="transaction-date" type="date" required></label>
+        <div class="modal-actions"><button id="cancel-modal" type="button" class="secondary">Annulla</button><button type="submit" class="primary">Aggiungi</button></div>
+      </form>
     </div>
+  </div>
 
-    <script src="js/dashboard.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
 </body>
-
 </html>
